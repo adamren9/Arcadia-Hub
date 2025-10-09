@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcadia Hub - Support</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .support-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #1c1c1c;
+      border-radius: 10px;
+      color: #fff;
+    }
+    .support-container h1 {
+      margin-bottom: 15px;
+      color: #ffcc00;
+    }
+    .support-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .support-form input, .support-form textarea {
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    .support-form button {
+      width: 120px;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #0078ff;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .support-form button:hover {
+      background: #005fcc;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">Arcadia Hub</div>
+    <div class="cart">
+  🛒 <span class="cart-count">0</span>
+</div>
+    <nav>
+      <ul>
+        <li><a href="Arcadia-Store.html">Store</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="friends.html">Friends</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="support.html"class="active">Support</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <input type="text" placeholder="Search games..." class="search-box">
+      <button class="login-btn">Search</button>
+    </div>
+  </header>
+
+  <!-- Support Section -->
+  <main>
+    <div class="support-container">
+      <h1>Support</h1>
+      <p>Need help? Fill out the form below and our support team will get back to you as soon as possible.</p>
+
+      <form class="support-form" onsubmit="submitSupport(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Describe your issue..." required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    function submitSupport(event) {
+      event.preventDefault();
+      alert("✅ Your support request has been submitted! We'll contact you soon.");
+    }
+  </script>
+</body>
+</html>

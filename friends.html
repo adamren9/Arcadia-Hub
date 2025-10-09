@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcadia Hub - Friends</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .friends-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #1c1c1c;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    .friends-container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .friend-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #2a2a2a;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .friend-card:hover {
+      background: #333;
+    }
+
+    .friend-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: #fff;
+    }
+
+    .friend-info img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid #555;
+    }
+
+    .friend-name {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .friend-status {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .friend-actions button {
+      background: #0078ff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      margin-left: 5px;
+      transition: background 0.3s;
+    }
+
+    .friend-actions button:hover {
+      background: #005fcc;
+    }
+
+    /* Add Friend form */
+    .add-friend {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .add-friend input {
+      padding: 8px;
+      border: none;
+      border-radius: 6px;
+      width: 60%;
+      margin-right: 10px;
+    }
+
+    .add-friend button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .add-friend button:hover {
+      background: #1e7e34;
+    }
+  </style>
+</head>
+<body>
+   <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">Arcadia Hub</div>
+    <div class="cart">
+  🛒 <span class="cart-count">0</span>
+</div>
+    <nav>
+      <ul>
+        <li><a href="Arcadia-Store.html" >Store</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="friends.html"class="active">Friends</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="support.html">Support</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <input type="text" placeholder="Search games..." class="search-box">
+      <button class="login-btn">Search</button>
+    </div>
+  </header>
+
+  <!-- Friends Section -->
+  <main>
+    <div class="friends-container">
+      <h1>Your Friends</h1>
+
+      <!-- Add friend form -->
+      <div class="add-friend">
+        <input type="text" id="friendName" placeholder="Enter friend's name">
+        <button onclick="addFriend()">Add Friend</button>
+      </div>
+
+      <div id="friendsList">
+        <div class="friend-card">
+          <div class="friend-info">
+            <img src="https://i.pravatar.cc/50?img=1" alt="Friend 1">
+            <div>
+              <div class="friend-name">GamerGal</div>
+              <div class="friend-status">🟢 Online</div>
+            </div>
+          </div>
+          <div class="friend-actions">
+            <button onclick="messageFriend('GamerGal')">Message</button>
+            <button onclick="removeFriend(this)">Remove</button>
+          </div>
+        </div>
+
+        <div class="friend-card">
+          <div class="friend-info">
+            <img src="https://i.pravatar.cc/50?img=2" alt="Friend 2">
+            <div>
+              <div class="friend-name">ProPlayer99</div>
+              <div class="friend-status">🔴 Offline</div>
+            </div>
+          </div>
+          <div class="friend-actions">
+            <button onclick="messageFriend('ProPlayer99')">Message</button>
+            <button onclick="removeFriend(this)">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Add new friend
+    function addFriend() {
+      const nameInput = document.getElementById("friendName");
+      const name = nameInput.value.trim();
+      if (name === "") {
+        alert("Please enter a name!");
+        return;
+      }
+
+      const friendsList = document.getElementById("friendsList");
+
+      // Create new friend card
+      const card = document.createElement("div");
+      card.classList.add("friend-card");
+      card.innerHTML = `
+        <div class="friend-info">
+          <img src="https://i.pravatar.cc/50?u=${name}" alt="${name}">
+          <div>
+            <div class="friend-name">${name}</div>
+            <div class="friend-status">🟡 Pending</div>
+          </div>
+        </div>
+        <div class="friend-actions">
+          <button onclick="messageFriend('${name}')">Message</button>
+          <button onclick="removeFriend(this)">Remove</button>
+        </div>
+      `;
+
+      friendsList.appendChild(card);
+      nameInput.value = "";
+    }
+
+    // Remove friend
+    function removeFriend(button) {
+      button.closest(".friend-card").remove();
+    }
+
+    // Message friend (demo)
+    function messageFriend(name) {
+      alert("Messaging " + name + "...");
+    }
+  </script>
+</body>
+</html>

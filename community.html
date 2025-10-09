@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcadia Hub - Community</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .community-feed {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #1c1c1c;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    .post-box {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .post-box textarea {
+      resize: none;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .post-box button {
+      align-self: flex-end;
+      background: #0078ff;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .post-box button:hover {
+      background: #005fcc;
+    }
+
+    .post {
+      background: #2a2a2a;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .post-user {
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .post-content {
+      margin-bottom: 10px;
+    }
+
+    .post-actions button {
+      background: transparent;
+      border: none;
+      color: #aaa;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .post-actions button:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+ <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">Arcadia Hub</div>
+    <div class="cart">
+  🛒 <span class="cart-count">0</span>
+</div>
+    <nav>
+      <ul>
+        <li><a href="Arcadia-Store.html" >Store</a></li>
+        <li><a href="community.html"class="active">Community</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="friends.html">Friends</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="support.html">Support</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <input type="text" placeholder="Search games..." class="search-box">
+      <button class="login-btn">Search</button>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <h1>Community</h1>
+    <p>Join discussions, share content, and connect with other gamers.</p>
+  </header>
+
+  <!-- Community Feed -->
+  <main class="community-feed">
+    <!-- Post Box -->
+    <div class="post-box">
+      <textarea id="postInput" placeholder="Share your thoughts..."></textarea>
+      <button onclick="addPost()">Post</button>
+    </div>
+
+    <!-- Feed Container -->
+    <div id="feed">
+      <!-- Example Posts -->
+      <div class="post">
+        <div class="post-user">🔥 Gamer123</div>
+        <div class="post-content">Just finished <b>Elder Realms V</b> — WOW that ending! 😱</div>
+        <div class="post-actions">
+          <button onclick="likePost(this)">👍 Like</button>
+          <button onclick="commentPost(this)">💬 Comment</button>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post-user">🎮 PixelQueen</div>
+        <div class="post-content">Anyone up for co-op in <b>CyberRaiders Online</b> tonight?</div>
+        <div class="post-actions">
+          <button onclick="likePost(this)">👍 Like</button>
+          <button onclick="commentPost(this)">💬 Comment</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function addPost() {
+      const input = document.getElementById("postInput");
+      const text = input.value.trim();
+      if (text === "") {
+        alert("Please write something before posting!");
+        return;
+      }
+
+      const feed = document.getElementById("feed");
+
+      // Create new post
+      const post = document.createElement("div");
+      post.classList.add("post");
+      post.innerHTML = `
+        <div class="post-user">🙂 You</div>
+        <div class="post-content">${text}</div>
+        <div class="post-actions">
+          <button onclick="likePost(this)">👍 Like</button>
+          <button onclick="commentPost(this)">💬 Comment</button>
+        </div>
+      `;
+
+      // Insert at top of feed
+      feed.prepend(post);
+
+      input.value = "";
+    }
+
+    function likePost(button) {
+      button.innerText = "✅ Liked";
+      button.disabled = true;
+    }
+
+    function commentPost(button) {
+      const comment = prompt("Write your comment:");
+      if (comment) {
+        alert("You commented: " + comment);
+      }
+    }
+  </script>
+</body>
+</html>
